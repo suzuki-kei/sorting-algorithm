@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include "sorting-algorithm.hpp"
 
 #define ARRAY_LENGTH(array) (int)(sizeof(array) / sizeof(*array))
 
@@ -64,48 +65,6 @@ void set_random_values(int *array, int size)
     for(int i = 0; i < size; i++) {
         array[i] = std::rand() % 100;
     }
-}
-
-void bubble_sort(int *array, int size)
-{
-    for(int limit = size; limit > 0; limit--) {
-        for(int i = 1; i < limit; i++) {
-            if(array[i-1] > array[i]) {
-                std::swap(array[i-1], array[i]);
-            }
-        }
-    }
-}
-
-void quick_sort(int *array, int lower_limit, int upper_limit)
-{
-    int lower_index = lower_limit;
-    int upper_index = upper_limit;
-    const int pivot = array[(lower_limit + upper_limit) / 2];
-
-    while(lower_index <= upper_index) {
-        while(lower_index <= upper_index && array[lower_index] < pivot) {
-            lower_index++;
-        }
-        while(lower_index <= upper_index && array[upper_index] > pivot) {
-            upper_index--;
-        }
-        if(lower_index <= upper_index) {
-            std::swap(array[lower_index++], array[upper_index--]);
-        }
-    }
-
-    if(lower_limit < upper_index) {
-        quick_sort(array, lower_limit, upper_index);
-    }
-    if(lower_index < upper_limit) {
-        quick_sort(array, lower_index, upper_limit);
-    }
-}
-
-void quick_sort(int *array, int size)
-{
-    quick_sort(array, 0, size-1);
 }
 
 typedef void (*SetValuesFunction)(int *array, int size);
