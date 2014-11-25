@@ -27,6 +27,21 @@ void selection_sort(T *array, int size)
 }
 
 template <typename T>
+void insertion_sort(T *array, int size)
+{
+    for(int sorted_size = 1; sorted_size < size; sorted_size++) {
+        const T insertion_value = array[sorted_size];
+        int insertion_index = sorted_size - 1;
+
+        while(insertion_index >= 0 && array[insertion_index] > insertion_value) {
+            array[insertion_index + 1] = array[insertion_index];
+            insertion_index--;
+        }
+        array[insertion_index + 1] = insertion_value;
+    }
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;
