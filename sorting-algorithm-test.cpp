@@ -37,8 +37,9 @@ static const SetValuesAlgorithm SET_VALUES_ALGORITHMS[] = {
 };
 
 static const SortingAlgorithm SORTING_ALGORITHMS[] = {
-    {"bubble_sort", bubble_sort},
-    {"quick_sort", quick_sort},
+    {"bubble_sort",    bubble_sort},
+    {"selection_sort", selection_sort},
+    {"quick_sort",     quick_sort},
 };
 
 void initialize()

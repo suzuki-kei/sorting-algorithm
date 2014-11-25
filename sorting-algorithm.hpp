@@ -13,6 +13,20 @@ void bubble_sort(T *array, int size)
 }
 
 template <typename T>
+void selection_sort(T *array, int size)
+{
+    for(int sorted_size = 0; sorted_size < size; sorted_size++) {
+        int minimum_index = sorted_size;
+        for(int i = sorted_size + 1; i < size; i++) {
+            if(array[i] < array[minimum_index]) {
+                minimum_index = i;
+            }
+        }
+        std::swap(array[sorted_size], array[minimum_index]);
+    }
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;
