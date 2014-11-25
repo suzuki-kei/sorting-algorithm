@@ -1,4 +1,4 @@
-SRC = main.cpp sorting-algorithm-test.cpp
+SRC = main.cpp sorting-algorithm.hpp sorting-algorithm-test.hpp sorting-algorithm-test.cpp
 OUT = a.out
 
 $(OUT): $(SRC)
