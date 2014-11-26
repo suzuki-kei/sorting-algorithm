@@ -42,6 +42,29 @@ void insertion_sort(T *array, int size)
 }
 
 template <typename T>
+void shaker_sort(T *array, int size)
+{
+    int lower_limit = 0;
+    int upper_limit = size - 1;
+
+    while(lower_limit <= upper_limit) {
+        for(int i = lower_limit + 1; i <= upper_limit; i++) {
+            if(array[i-1] > array[i]) {
+                std::swap(array[i-1], array[i]);
+            }
+        }
+        upper_limit--;
+
+        for(int i = upper_limit - 1; i >= lower_limit; i--) {
+            if(array[i] > array[i+1]) {
+                std::swap(array[i], array[i+1]);
+            }
+        }
+        lower_limit++;
+    }
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;
