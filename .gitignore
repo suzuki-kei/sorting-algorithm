@@ -1,2 +1,5 @@
 a.out
 
+# vim swap file.
+.*.swp
+
