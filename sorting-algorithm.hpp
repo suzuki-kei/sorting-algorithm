@@ -65,6 +65,21 @@ void shaker_sort(T *array, int size)
 }
 
 template <typename T>
+void shell_sort(T *array, int size)
+{
+    int initial_hop = 1;
+    for(; initial_hop * 3 + 1 < size; initial_hop = initial_hop * 3 + 1);
+
+    for(int hop = initial_hop; hop > 0; hop /= 3) {
+        for(int upper = 1; upper < size; upper++) {
+            for(int i = upper; i >= hop && array[i-hop] > array[i]; i -= hop) {
+                std::swap(array[i-hop], array[i]);
+            }
+        }
+    }
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;
