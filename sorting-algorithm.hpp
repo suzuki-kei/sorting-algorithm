@@ -90,6 +90,25 @@ void shell_sort(T *array, int size)
 }
 
 template <typename T>
+void comb_sort(T *array, int size)
+{
+    int gap = size;
+    bool done = false;
+
+    while(!done || gap > 1) {
+        done = true;
+        gap = std::max(gap * 10 / 13, 1);
+
+        for(int i = gap; i < size; i++) {
+            if(array[i] < array[i-gap]) {
+                done = false;
+                std::swap(array[i], array[i-gap]);
+            }
+        }
+    }
+}
+
+template <typename T>
 void merge(T *target, const T *begin1, const T *end1, const T *begin2, const T *end2)
 {
     while(begin1 != end1 && begin2 != end2) {
