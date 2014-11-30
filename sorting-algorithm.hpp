@@ -3,10 +3,10 @@
 template <typename T>
 void bubble_sort(T *array, int size)
 {
-    for(int limit = size; limit > 0; limit--) {
-        for(int i = 1; i < limit; i++) {
-            if(array[i-1] > array[i]) {
-                std::swap(array[i-1], array[i]);
+    for(int unsorted_size = size; unsorted_size > 0; unsorted_size--) {
+        for(int i = 1; i < unsorted_size; i++) {
+            if(array[i] < array[i-1]) {
+                std::swap(array[i], array[i-1]);
             }
         }
     }
