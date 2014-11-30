@@ -33,11 +33,11 @@ void insertion_sort(T *array, int size)
         const T insertion_value = array[sorted_size];
         int insertion_index = sorted_size - 1;
 
-        while(insertion_index >= 0 && array[insertion_index] > insertion_value) {
-            array[insertion_index + 1] = array[insertion_index];
+        while(insertion_index > 0 && array[insertion_index] > insertion_value) {
+            array[insertion_index+1] = array[insertion_index];
             insertion_index--;
         }
-        array[insertion_index + 1] = insertion_value;
+        array[insertion_index] = insertion_value;
     }
 }
 
