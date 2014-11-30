@@ -1,3 +1,6 @@
+#ifndef SORTING_ALGORITHM_HPP
+#define SORTING_ALGORITHM_HPP
+
 #include <algorithm>
 
 template <typename T>
@@ -156,4 +159,6 @@ void quick_sort(T *array, int size)
 {
     quick_sort(array, 0, size-1);
 }
+
+#endif
 
