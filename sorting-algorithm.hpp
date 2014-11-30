@@ -71,9 +71,16 @@ void shell_sort(T *array, int size)
     for(; initial_hop * 3 + 1 < size; initial_hop = initial_hop * 3 + 1);
 
     for(int hop = initial_hop; hop > 0; hop /= 3) {
-        for(int upper = 1; upper < size; upper++) {
-            for(int i = upper; i >= hop && array[i-hop] > array[i]; i -= hop) {
-                std::swap(array[i-hop], array[i]);
+        for(int offset = 0; offset < hop; offset++) {
+            for(int sorted_size = 1; sorted_size * hop + offset < size; sorted_size++) {
+                const T insertion_value = array[sorted_size * hop + offset];
+                int insertion_index = sorted_size * hop - hop;
+
+                while(insertion_index > 0 && array[insertion_index] > insertion_value) {
+                    array[insertion_index+hop] = array[insertion_index];
+                    insertion_index -= hop;
+                }
+                array[insertion_index] = insertion_value;
             }
         }
     }
