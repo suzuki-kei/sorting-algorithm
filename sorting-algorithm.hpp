@@ -8,8 +8,8 @@ void bubble_sort(T *array, int size)
 {
     for(int unsorted_size = size; unsorted_size > 0; unsorted_size--) {
         for(int i = 1; i < unsorted_size; i++) {
-            if(array[i] < array[i-1]) {
-                std::swap(array[i], array[i-1]);
+            if(array[i] < array[i - 1]) {
+                std::swap(array[i], array[i - 1]);
             }
         }
     }
@@ -37,7 +37,7 @@ void insertion_sort(T *array, int size)
         int insertion_index = sorted_size - 1;
 
         while(insertion_index > 0 && array[insertion_index] > insertion_value) {
-            array[insertion_index+1] = array[insertion_index];
+            array[insertion_index + 1] = array[insertion_index];
             insertion_index--;
         }
         array[insertion_index] = insertion_value;
@@ -52,15 +52,15 @@ void shaker_sort(T *array, int size)
 
     while(lower_limit <= upper_limit) {
         for(int i = lower_limit + 1; i <= upper_limit; i++) {
-            if(array[i] < array[i-1]) {
-                std::swap(array[i], array[i-1]);
+            if(array[i] < array[i - 1]) {
+                std::swap(array[i], array[i - 1]);
             }
         }
         upper_limit--;
 
         for(int i = upper_limit - 1; i >= lower_limit; i--) {
-            if(array[i] > array[i+1]) {
-                std::swap(array[i], array[i+1]);
+            if(array[i] > array[i + 1]) {
+                std::swap(array[i], array[i + 1]);
             }
         }
         lower_limit++;
@@ -80,7 +80,7 @@ void shell_sort(T *array, int size)
                 int insertion_index = sorted_size * hop - hop;
 
                 while(insertion_index > 0 && array[insertion_index] > insertion_value) {
-                    array[insertion_index+hop] = array[insertion_index];
+                    array[insertion_index + hop] = array[insertion_index];
                     insertion_index -= hop;
                 }
                 array[insertion_index] = insertion_value;
@@ -100,9 +100,9 @@ void comb_sort(T *array, int size)
         gap = std::max(gap * 10 / 13, 1);
 
         for(int i = gap; i < size; i++) {
-            if(array[i] < array[i-gap]) {
+            if(array[i] < array[i - gap]) {
                 done = false;
-                std::swap(array[i], array[i-gap]);
+                std::swap(array[i], array[i - gap]);
             }
         }
     }
@@ -176,7 +176,7 @@ void quick_sort(T *array, int lower_limit, int upper_limit)
 template <typename T>
 void quick_sort(T *array, int size)
 {
-    quick_sort(array, 0, size-1);
+    quick_sort(array, 0, size - 1);
 }
 
 #endif

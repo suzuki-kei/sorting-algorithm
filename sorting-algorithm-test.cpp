@@ -57,7 +57,7 @@ void initialize()
 bool is_sorted(const int *array, int size)
 {
     for(int i = 1; i < size; i++) {
-        if(array[i-1] > array[i]) {
+        if(array[i - 1] > array[i]) {
             return false;
         }
     }
