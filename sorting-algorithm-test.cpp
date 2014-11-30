@@ -30,19 +30,19 @@ static void set_random_values(int *array, int size);
 static void test(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values, bool debug);
 
 static const SetValuesAlgorithm SET_VALUES_ALGORITHMS[] = {
-    {"fixed values",      set_fixed_values},
-    {"ascending values",  set_ascending_values},
-    {"descending values", set_descending_values},
-    {"random values",     set_random_values},
+    {"Fixed Values",      set_fixed_values},
+    {"Ascending Values",  set_ascending_values},
+    {"Descending Values", set_descending_values},
+    {"Random Values",     set_random_values},
 };
 
 static const SortingAlgorithm SORTING_ALGORITHMS[] = {
-    {"bubble_sort",    bubble_sort},
-    {"selection_sort", selection_sort},
-    {"insertion_sort", insertion_sort},
-    {"shaker_sort",    shaker_sort},
-    {"shell_sort",     shell_sort},
-    {"quick_sort",     quick_sort},
+    {"Bubble Sort",    bubble_sort},
+    {"Selection Sort", selection_sort},
+    {"Insertion Sort", insertion_sort},
+    {"Shaker Sort",    shaker_sort},
+    {"Shell Sort",     shell_sort},
+    {"Quick Sort",     quick_sort},
 };
 
 void initialize()
@@ -116,8 +116,8 @@ void test(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values,
 
         set_values.function(array, size);
         sorting.function(array, size);
+        std::printf("%s - %s - %s (size=%d)\n", is_sorted(array, size) ? "OK" : "NG", sorting.name, set_values.name, size);
         if(debug || !is_sorted(array, size)) { print_array(array, size); }
-        std::printf("%s - %s - array[%d] ... %s\n", sorting.name, set_values.name, size, is_sorted(array, size) ? "OK" : "NG");
     }
 }
 
