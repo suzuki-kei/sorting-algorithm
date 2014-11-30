@@ -147,6 +147,58 @@ void merge_sort(T *array, int size)
 }
 
 template <typename T>
+bool is_heap(const T *array, int size)
+{
+    for(int i = 1, parent_index = 0; i < size; i++, parent_index = (i - 1) / 2) {
+        if(array[i] > array[parent_index]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename T>
+void heap_push(T *array, int size, const T value)
+{
+    array[size] = value;
+
+    for(int i = size, parent_index = (i - 1) / 2; i > 0 && array[i] > array[parent_index]; i = parent_index, parent_index = (i - 1) / 2) {
+        std::swap(array[i], array[parent_index]);
+    }
+}
+
+template <typename T>
+T heap_pop(T *array, int size)
+{
+    const T value = array[0];
+    array[0] = array[--size];
+
+    for(int i = 0, child_index = 1; child_index < size; i = child_index, child_index = i * 2 + 1) {
+        if(child_index + 1 < size && array[child_index] < array[child_index + 1]) {
+            child_index++;
+        }
+        if(array[i] > array[child_index]) {
+            break;
+        }
+        std::swap(array[i], array[child_index]);
+    }
+
+    return value;
+}
+
+template <typename T>
+void heap_sort(T *array, int size)
+{
+    for(int heap_size = 0; heap_size < size; heap_size++) {
+        heap_push(array, heap_size, array[heap_size]);
+    }
+
+    for(int heap_size = size; heap_size > 0; heap_size--) {
+        array[heap_size-1] = heap_pop(array, heap_size);
+    }
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;
