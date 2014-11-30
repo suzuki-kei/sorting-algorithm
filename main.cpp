@@ -5,5 +5,6 @@ int main()
     const bool debug = false;
     initialize();
     test_all(debug);
+    benchmark_all();
 }
 

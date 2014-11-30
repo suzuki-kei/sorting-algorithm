@@ -19,6 +19,7 @@ typedef void (*SortingFunction)(int *array, int size);
 typedef struct {
     const char * const name;
     const SortingFunction function;
+    const int benchmark_data_size;
 } SortingAlgorithm;
 
 static bool is_sorted(const int *array, int size);
@@ -28,6 +29,7 @@ static void set_ascending_values(int *array, int size);
 static void set_descending_values(int *array, int size);
 static void set_random_values(int *array, int size);
 static void test(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values, bool debug);
+void benchmark(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values);
 
 static const SetValuesAlgorithm SET_VALUES_ALGORITHMS[] = {
     {"Fixed Values",      set_fixed_values},
@@ -37,13 +39,13 @@ static const SetValuesAlgorithm SET_VALUES_ALGORITHMS[] = {
 };
 
 static const SortingAlgorithm SORTING_ALGORITHMS[] = {
-    {"Bubble Sort",    bubble_sort},
-    {"Selection Sort", selection_sort},
-    {"Insertion Sort", insertion_sort},
-    {"Shaker Sort",    shaker_sort},
-    {"Shell Sort",     shell_sort},
-    {"Merge Sort",     merge_sort},
-    {"Quick Sort",     quick_sort},
+    {"Bubble Sort",    bubble_sort,    2 << 15},
+    {"Selection Sort", selection_sort, 2 << 15},
+    {"Insertion Sort", insertion_sort, 2 << 15},
+    {"Shaker Sort",    shaker_sort,    2 << 15},
+    {"Shell Sort",     shell_sort,     2 << 15},
+    {"Merge Sort",     merge_sort,     2 << 24},
+    {"Quick Sort",     quick_sort,     2 << 24},
 };
 
 void initialize()
@@ -124,9 +126,32 @@ void test(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values,
 
 void test_all(bool debug)
 {
+    std::cout << std::endl << "======== TEST ========" << std::endl;
     for(int i = 0; i < ARRAY_LENGTH(SORTING_ALGORITHMS); i++) {
         for(int j = 0; j < ARRAY_LENGTH(SET_VALUES_ALGORITHMS); j++) {
             test(SORTING_ALGORITHMS[i], SET_VALUES_ALGORITHMS[j], debug);
+        }
+    }
+}
+
+void benchmark(const SortingAlgorithm &sorting, const SetValuesAlgorithm &set_values)
+{
+    const int size = sorting.benchmark_data_size;
+    int array[size];
+
+    const clock_t start_time = std::clock();
+    set_values.function(array, size);
+    sorting.function(array, size);
+    const double elapsed_time = static_cast<double>(std::clock() - start_time) / CLOCKS_PER_SEC;
+    std::printf("%9.6lfms - %s - %s (size=%d)\n", elapsed_time, sorting.name, set_values.name, size);
+}
+
+void benchmark_all()
+{
+    std::cout << std::endl << "======== BENCHMARK ========" << std::endl;
+    for(int i = 0; i < ARRAY_LENGTH(SORTING_ALGORITHMS); i++) {
+        for(int j = 0; j < ARRAY_LENGTH(SET_VALUES_ALGORITHMS); j++) {
+            benchmark(SORTING_ALGORITHMS[i], SET_VALUES_ALGORITHMS[j]);
         }
     }
 }

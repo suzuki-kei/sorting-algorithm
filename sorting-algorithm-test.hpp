@@ -3,6 +3,7 @@
 
 void initialize();
 void test_all(bool debug);
+void benchmark_all();
 
 #endif
 
