@@ -39,15 +39,15 @@ static const SetValuesAlgorithm SET_VALUES_ALGORITHMS[] = {
 };
 
 static const SortingAlgorithm SORTING_ALGORITHMS[] = {
-    {"Bubble Sort",    bubble_sort,    2 << 15},
-    {"Selection Sort", selection_sort, 2 << 15},
-    {"Insertion Sort", insertion_sort, 2 << 15},
-    {"Shaker Sort",    shaker_sort,    2 << 15},
-    {"Shell Sort",     shell_sort,     2 << 15},
-    {"Comb Sort",      comb_sort,      2 << 24},
-    {"Heap Sort",      heap_sort,      2 << 24},
-    {"Merge Sort",     merge_sort,     2 << 24},
-    {"Quick Sort",     quick_sort,     2 << 24},
+    {"Bubble Sort",    bubble_sort,    1 << 16},
+    {"Selection Sort", selection_sort, 1 << 16},
+    {"Insertion Sort", insertion_sort, 1 << 16},
+    {"Shaker Sort",    shaker_sort,    1 << 16},
+    {"Shell Sort",     shell_sort,     1 << 16},
+    {"Comb Sort",      comb_sort,      1 << 25},
+    {"Heap Sort",      heap_sort,      1 << 25},
+    {"Merge Sort",     merge_sort,     1 << 25},
+    {"Quick Sort",     quick_sort,     1 << 25},
 };
 
 void initialize()
