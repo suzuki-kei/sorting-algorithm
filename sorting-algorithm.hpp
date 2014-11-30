@@ -87,6 +87,44 @@ void shell_sort(T *array, int size)
 }
 
 template <typename T>
+void merge(T *target, const T *begin1, const T *end1, const T *begin2, const T *end2)
+{
+    while(begin1 != end1 && begin2 != end2) {
+        *target++ = *begin1 < *begin2 ? *begin1++ : *begin2++;
+    }
+    while(begin1 != end1) {
+        *target++ = *begin1++;
+    }
+    while(begin2 != end2) {
+        *target++ = *begin2++;
+    }
+}
+
+template <typename T>
+void merge_sort(T *array, int size)
+{
+    T *source = array;
+    T *buffer = new T[size];
+    T *target = buffer;
+
+    for(int block_size = 1; block_size < size; block_size *= 2) {
+        for(int offset = 0; offset < size; offset += block_size * 2) {
+            merge(&target[offset],
+                  &source[std::min(offset + block_size * 0, size)],
+                  &source[std::min(offset + block_size * 1, size)],
+                  &source[std::min(offset + block_size * 1, size)],
+                  &source[std::min(offset + block_size * 2, size)]);
+        }
+        std::swap(source, target);
+    }
+    if(array == target) {
+        std::copy(source, source + size, array);
+    }
+
+    delete[] buffer;
+}
+
+template <typename T>
 void quick_sort(T *array, int lower_limit, int upper_limit)
 {
     int lower_index = lower_limit;

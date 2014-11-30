@@ -42,6 +42,7 @@ static const SortingAlgorithm SORTING_ALGORITHMS[] = {
     {"Insertion Sort", insertion_sort},
     {"Shaker Sort",    shaker_sort},
     {"Shell Sort",     shell_sort},
+    {"Merge Sort",     merge_sort},
     {"Quick Sort",     quick_sort},
 };
 
